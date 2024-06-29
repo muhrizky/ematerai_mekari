@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="ematerai_mekari_view_tree" model="ir.ui.view">
+        <field name="name">ematerai.mekari.tree</field>
+        <field name="model">ematerai.mekari</field>
+        <field name="inherit_id" ref="ssi_ematerai_mixin.ematerai_document_view_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <data />
+        </field>
+    </record>
+
+    <record id="ematerai_mekari_action" model="ir.actions.act_window">
+        <field name="name">E-Materai Mekari</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ematerai.mekari</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="ematerai_mekari_menu"
+            name="Mekari"
+            parent="ssi_ematerai_mixin.root_ematerai_provider_menu"
+            action="ematerai_mekari_action"
+            sequence="9"
+    />
+</odoo>

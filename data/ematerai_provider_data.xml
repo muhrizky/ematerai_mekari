@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="ematerai_provider_mekari" model="ematerai.provider">
+            <field name="name">Mekari</field>
+            <field name="code">MEKARI</field>
+            <field name="model_name">ematerai.mekari</field>
+        </record>
+    </data>
+</odoo>
