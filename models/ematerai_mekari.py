@@ -304,3 +304,11 @@ class EmateraiMekari(models.Model):
         document.message_post(
             body=message, message_type="notification", attachments=_attachments
         )
+
+    @api.multi
+    def action_submit_ematerai(self):
+        self._action_submit_ematerai()
+
+    @api.multi
+    def action_check_ematerai(self):
+        self._action_check_ematerai()
