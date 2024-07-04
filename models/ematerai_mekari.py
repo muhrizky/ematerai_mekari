@@ -284,9 +284,9 @@ class EmateraiMekari(models.Model):
         self.ensure_one()
         criteria = [("id", "=", self.res_id)]
         document = self.env[self.model].search(criteria)
-        message = ("eMeterai is in process. Please wait a few moments to complete the stamping process. "
-                   "You can check the status using the 'Check Status' button or contact our support at "
-                   "Mekari if the eMeterai is not issued after 15 minutes.")
+        message = ("Meterai processing. Please wait a few moments. "
+                   "Check status via the 'Check E-meterai' button in "
+                   "the list or contact Mekari support if not issued within 15 minutes")
         document.message_post(body=message, message_type="notification")
 
     @api.multi
