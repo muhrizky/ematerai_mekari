@@ -95,14 +95,16 @@ class EmateraiMekari(models.Model):
         reader = PyPDF2.PdfFileReader(pdf_file)
         page = reader.getPage(0)
         width, height = page.mediaBox.getWidth(), page.mediaBox.getHeight()
+        # Read the PDF and extract the first page's dimensions
+        pages_count = reader.getNumPages()
 
         # Prepare the annotation details
         annotation = {
-            "page": self.type_id.visual_sign_page,
-            "element_width": self.type_id.visual_urx - self.type_id.visual_iix,
-            "element_height": self.type_id.visual_ury - self.type_id.visual_iiy,
-            "position_x": self.type_id.visual_urx,
-            "position_y": self.type_id.visual_ury,
+            "page": pages_count,
+            "element_width": self.type_id.visual_iix,
+            "element_height": self.type_id.visual_iiy,
+            "position_x": width - self.type_id.visual_urx,
+            "position_y": height - self.type_id.visual_ury,
             "canvas_width": width,
             "canvas_height": height,
             "type_of": "meterai"
@@ -265,7 +267,7 @@ class EmateraiMekari(models.Model):
         obj_ir_attachment = self.env["ir.attachment"]
         b64_pdf = base64.b64encode(data)
         datetime_now = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        filename = "ematerai_" + datetime_now
+        filename = "ematerai_" + datetime_now + "_stamped"
         ir_values = {
             "name": filename,
             "type": "binary",
