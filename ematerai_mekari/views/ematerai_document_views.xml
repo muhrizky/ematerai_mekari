@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ematerai_document_view_tree_mekari" model="ir.ui.view">
+        <field name="name">ematerai.document.tree</field>
+        <field name="model">ematerai.document</field>
+        <field name="inherit_id" ref="ssi_ematerai_mixin.ematerai_document_view_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_generate_ematerai']" position="replace">
+                <button
+                    name="action_submit_ematerai"
+                    string="Submit E-Materai"
+                    type="object"
+                    icon="fa-check"
+                    confirm="Submit E-Materai. Are you sure?"
+                    attrs="{'invisible': [('state', '!=', 'draft')]}"
+                />
+                <button
+                    name="action_check_ematerai"
+                    string="Check E-Materai"
+                    type="object"
+                    icon="fa-check"
+                    confirm="Check E-Materai. Are you sure?"
+                    attrs="{'invisible': [('state', 'not in', ['submitted','m_none','m_in_progress','m_none','m_pending','m_failed'])]}"
+                />
+               <button
+                    name="action_generate_ematerai"
+                    string="Generate E-Materai"
+                    type="object"
+                    icon="fa-check"
+                    confirm="Generate E-Materai. Are you sure?"
+                    attrs="{'invisible': [('state', '!=', 'm_success')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

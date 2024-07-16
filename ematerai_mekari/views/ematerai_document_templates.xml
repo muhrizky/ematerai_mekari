@@ -1,0 +1,10 @@
+<odoo>
+    <template id="ematerai_document_page_inherit" inherit_id="ssi_ematerai_mixin.ematerai_document_page">
+        <xpath expr="//field[@name='ematerai_document_ids']" position="attributes">
+            <attribute name="readonly">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='ematerai_total']" position="attributes">
+            <attribute name="string">Total of completed e-materai</attribute>
+        </xpath>
+    </template>
+</odoo>

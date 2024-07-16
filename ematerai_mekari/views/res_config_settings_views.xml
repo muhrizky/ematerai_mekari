@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.mekari.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='integration']" position="inside">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="module_mekari" widget="upgrade_boolean" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="module_mekari" />
+                        <div class="text-muted">
+                            Using Mekari provider for generate E-Materai.
+                        </div>
+                        <div class="content-group" attrs="{'invisible': [('module_mekari','=',False)]}">
+                            <div class="row mt16">
+                                <label for="mkr_base_url" class="col-md-4 o_light_label" />
+                                <field name="mkr_base_url" class="col-md-8 oe_inline" />
+                            </div>
+                            <div class="row mt16">
+                                <label for="mkr_client_id" class="col-md-4 o_light_label" />
+                                <field name="mkr_client_id" class="col-md-8 oe_inline"
+                                />
+                            </div>
+                            <div class="row mt16">
+                                <label for="mkr_client_secret" class="col-md-4 o_light_label"/>
+                                <field name="mkr_client_secret" class="col-md-8 oe_inline" />
+                            </div>
+                            <div class="row mt16">
+                                <label for="mkr_stamp_api" class="col-md-4 o_light_label"/>
+                                <field name="mkr_stamp_api" class="col-md-8 oe_inline" />
+                            </div>
+                            <div class="row mt16">
+                                <label for="mkr_check_stamp_api" class="col-md-4 o_light_label"/>
+                                <field name="mkr_check_stamp_api" class="col-md-8 oe_inline" />
+                            </div>
+                            <div class="row mt16">
+                                <label for="mkr_download_stamp_api" class="col-md-4 o_light_label"/>
+                                <field name="mkr_download_stamp_api" class="col-md-8 oe_inline" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
