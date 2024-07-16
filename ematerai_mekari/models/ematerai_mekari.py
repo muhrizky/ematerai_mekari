@@ -128,8 +128,8 @@ class EmateraiMekari(models.Model):
         datetime_now = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
         # Construct the payload for HMAC signature generation
-        request_line = f"{method} {path_api} HTTP/1.1"
-        payload = f"date: {datetime_now}\n{request_line}"
+        request_line = "{} {} HTTP/1.1".format(method, path_api)
+        payload = "date: {}\n{}".format(datetime_now, request_line)
 
         secret = client_secret.encode()
         digest = hmac.new(secret, payload.encode(), hashlib.sha256)
@@ -140,8 +140,8 @@ class EmateraiMekari(models.Model):
             'Content-Type': 'application/json',
             'Date': datetime_now,
             'Authorization': (
-                f'hmac username="{client_id}", algorithm="hmac-sha256", '
-                f'headers="date request-line", signature="{signature}"'
+                'hmac username="{}", algorithm="hmac-sha256", headers="date request-line", signature="{}"'
+                .format(client_id, signature)
             )
         }
 
@@ -225,10 +225,10 @@ class EmateraiMekari(models.Model):
             except json.JSONDecodeError:
                 detailed_message = message
             for param, errors in params.items():
-                detailed_message += f"\n{param}: " + "; ".join(errors)
+                detailed_message += "\n{}: {}".format(param, "; ".join(errors))
             return detailed_message
         except Exception as e:
-            return f"Failed to parse error response: {str(e)}"
+            return "Failed to parse error response: {}".format(str(e))
 
     @api.multi
     def get_mekari_data(self, data, type=False):
