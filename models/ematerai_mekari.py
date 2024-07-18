@@ -42,7 +42,7 @@ class EmateraiMekari(models.Model):
                 data = self.get_mekari_data(response)
                 if "id" in data:
                     self.mekari_document_id = data["id"]
-                    self.write(self._prepare_submit_document_data())
+                    self.write(self._prepare_submit_document_data(data["id"]))
                     self._message_submit_ematerai()
             else:
                 msg_err = _(err_resp)
@@ -241,8 +241,8 @@ class EmateraiMekari(models.Model):
         return result
 
     @api.multi
-    def _prepare_submit_document_data(self):
-        return {"state": "submitted"}
+    def _prepare_submit_document_data(self, reference_id=False):
+        return {"state": "submitted", "stamping_order": reference_id}
 
     @api.multi
     def _prepare_check_document_data(self, stamp_status):
