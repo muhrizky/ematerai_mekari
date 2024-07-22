@@ -266,7 +266,7 @@ class EmateraiMekari(models.Model):
         self.ensure_one()
         obj_ir_attachment = self.env["ir.attachment"]
         b64_pdf = base64.b64encode(data)
-        filename = self.original_datas_fname + " (signed)"
+        filename = self.original_datas_fname + " (stamped)"
         ir_values = {
             "name": filename,
             "type": "binary",
